@@ -5,8 +5,8 @@
 export const environment = {
   production: true,
   enviromentName:'Localhost Server Environment',
-  appName:'OWNER-PORTAL',
-  projectTitle:"Owner Portal",
+  appName:'',
+  projectTitle:"",
   sessionTimeout: 24,
-  apiPath:"http://localhost:8000/v1/"
+  apiPath:""
 };

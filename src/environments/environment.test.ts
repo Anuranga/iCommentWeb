@@ -5,9 +5,9 @@
 export const environment = {
   production: true,
   enviromentName:'Test Server Environment',
-  appName:'OWNER-PORTAL',
-  projectTitle:"Owner Portal",
+  appName:'',
+  projectTitle:"",
   sessionTimeout: 24,
-  apiPath:"http://api-test-owner-portal.mytaxi.lk/v1/" // Test Server
+  apiPath:"" // Test Server
 
 };

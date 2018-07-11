@@ -5,8 +5,8 @@
 export const environment = {
   production: true,
   enviromentName:'Live Server Environment',
-  appName:'OWNER-PORTAL',
-  projectTitle:"Owner Portal",
+  appName:'',
+  projectTitle:"",
   sessionTimeout: 24,
-  apiPath:"https://api-owner-portal.pickme.lk/v1/" // Live Server
+  apiPath:"" // Live Server
 };

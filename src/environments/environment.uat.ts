@@ -5,8 +5,8 @@
 export const environment = {
   production: true,
   enviromentName:'UAT Server Environment',
-  appName:'OWNER-PORTAL',
-  projectTitle:"Owner Portal",
+  appName:'',
+  projectTitle:"",
   sessionTimeout: 24,
-  apiPath:"https://api-uat-owner-portal.mytaxi.lk/v1/"  // UAT Server
+  apiPath:""  // UAT Server
 };

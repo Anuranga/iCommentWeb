@@ -8,7 +8,7 @@ import { environment } from 'environments/environment';
 @Injectable()
 export class ApiEndpoints {
 
-  static GOOGLE_MAP_KEY = 'AIzaSyBiZomeUUY4Cg0XFMa1CiK6gCOBp9GH9p8';
+  static GOOGLE_MAP_KEY = '';
 
   // all api endpoints
   static ENDPOINT = {
@@ -21,16 +21,16 @@ export class ApiEndpoints {
     LOGOUT: environment.apiPath+'auth/logout',
     TEST: 'https://jsonplaceholder.typicode.com/posts',
 
-    LIST_OWNER_INFO: environment.apiPath+'owner_portal/get_Owner_Info',
-    LIST_DRIVER_INFO: environment.apiPath+'owner_portal/get_Driver_Info',
-    LIST_DRIVER_LOCATION_INFO: environment.apiPath+'owner_portal/get_Driver_Location',
-    LIST_DRIVER_PERFORMANCE: environment.apiPath+'owner_portal/get_Driver_Performance',
-    LIST_DRIVER_PERFORMANCE_SUMMARY: environment.apiPath+'owner_portal/get_Driver_Performance_Summary',
-    LIST_DRIVER_FINACE: environment.apiPath+'owner_portal/get_Driver_Finance',
-    LIST_DRIVER_FINACE_PDF: environment.apiPath+'owner_portal/get_Driver_Finance_PDF',
-    LIST_DRIVER_FINACE_SUMMARY: environment.apiPath+'owner_portal/get_Driver_Finance_Summary',
-    LIST_DRIVER_BREAKDOWN: environment.apiPath+'owner_portal/get_Driver_Breakdown',
-    LIST_DRIVER_BREAKDOWN_PDF: environment.apiPath+'owner_portal/get_Driver_Breakdown_PDF',
+    LIST_OWNER_INFO: environment.apiPath+'',
+    LIST_DRIVER_INFO: environment.apiPath+'',
+    LIST_DRIVER_LOCATION_INFO: environment.apiPath+'',
+    LIST_DRIVER_PERFORMANCE: environment.apiPath+'',
+    LIST_DRIVER_PERFORMANCE_SUMMARY: environment.apiPath+'',
+    LIST_DRIVER_FINACE: environment.apiPath+'',
+    LIST_DRIVER_FINACE_PDF: environment.apiPath+'',
+    LIST_DRIVER_FINACE_SUMMARY: environment.apiPath+'',
+    LIST_DRIVER_BREAKDOWN: environment.apiPath+'',
+    LIST_DRIVER_BREAKDOWN_PDF: environment.apiPath+'',
   };
 
   static RESPONCE_CODE = {
