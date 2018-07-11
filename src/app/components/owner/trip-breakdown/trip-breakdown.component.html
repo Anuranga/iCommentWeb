@@ -1,0 +1,130 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+  	<div class="row">
+  		<div class="col-md-10"><h4 style="padding-left: 9px;">Trip Breakdown</h4></div>
+  		<div class="col-md-2 driver-id"><span>Driver ID : {{ driverId }}</span></div>
+  	</div>
+  	<br>
+
+		<!--<form class="example-form" #f="ngForm" (ngSubmit)="onSubmit()" >-->
+			<div class="row user-menu">
+				<div class="col-md-5">
+					<mat-form-field class="example-full-width">
+                            <input (keyup.enter)="onSubmit()" name="search_keyword" maxlength="256" matInput placeholder="Search by Trip ID" [(ngModel)]="driverBreakData.search_keyword">
+                    </mat-form-field>
+				</div>
+				<div class="col-md-2"></div>
+
+				<div class="col-md-7">
+					<!--<button class="col-md-3" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Dashboard</button>-->
+					<button class="col-md-3 space pull-right" style="margin-right: 5px;" [routerLink]="['/owner', driverId,'driver-finance-statement']" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Finance Statement</button>
+					<button class="col-md-3 space pull-right" style="margin-right: 5px;" [routerLink]="['/owner', driverId,'driver-performance']"  mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px; display: none">Driver Performance</button>
+					<button class="col-md-3 space active pull-right" style="margin-right: 5px;" [routerLink]="['/owner', driverId,'trip-breakdown']" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Trip Breakdown</button>
+				</div>
+			</div>
+			<br>
+
+			<div class="row user-menu">
+				<div class="col-md-2">
+					<mat-form-field>
+						<input matInput [matDatepicker]="dateF" [(ngModel)]="driverBreakData.dateF" name="dateF" id="dateF" placeholder="Choose a Date">
+						<mat-datepicker-toggle matSuffix [for]="dateF"></mat-datepicker-toggle>
+						<mat-datepicker #dateF></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div class="col-md-2">
+					<mat-form-field>
+						<input matInput [matDatepicker]="dateT" name="dateT" [(ngModel)]="driverBreakData.dateT"  id="dateT" placeholder="Choose a Date">
+						<mat-datepicker-toggle matSuffix [for]="dateT"></mat-datepicker-toggle>
+						<mat-datepicker #dateT></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+
+        <div class="col-md-1">
+          <button class="pull-right space iconBackground" (click)="onSubmit()" mat-fab>
+            <i class="material-icons iconStyle">search</i>
+          </button>
+        </div>
+
+        <div class="col-md-1">
+          <button (click)="clearFeilds()" class="pull-right space iconBackground" mat-fab>
+            <i class="material-icons iconStyle">autorenew</i>
+          </button>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-3">
+          <button class="pull-right space iconBackground" (click)="downloadPDF()" mat-fab >
+            <i class="material-icons iconStyle">get_app</i></button>
+        </div>
+
+			</div>
+
+		<!--</form>-->
+    <br>
+
+	<div class="msg-data"></div>
+
+	  <mat-progress-bar *ngIf="dataLoading" mode="indeterminate"></mat-progress-bar>
+
+    <div class="row">
+
+    </div>
+
+	  <div class="example-container mat-elevation-z8">
+      <div class="scroll">
+		  <table class="table table-hover table-bordered" *ngIf="!dataLoading" id="data-table">
+			  <thead>
+			  <tr class=" warning">
+				  <th>Date</th>
+				  <th>Trip ID</th>
+				  <th>Description</th>
+				  <th>Credit</th>
+				  <th>Debit</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  <tr *ngFor="let driver of requestData;">
+				  <td>{{ driver.created_date }}</td>
+				  <td>{{ driver.trip_id }}</td>
+				  <td>{{ driver.description }}</td>
+				  <td><span *ngIf="driver.transaction_type == 'CREDIT'">{{ driver.amount }}</span></td>
+				  <td><span *ngIf="driver.transaction_type == 'DEBIT'">{{ driver.amount }}</span></td>
+			  </tr>
+			  </tbody>
+		  </table>
+      </div>
+	  </div>
+	  <div class="row">
+		  <div class="col-md-12">
+			  <div class="pull-right">
+				  <div class="pg-count">{{ current_page}} of {{ total_pages}} Pages</div>
+				  <div class="pagination">
+					  <button class="paginate-button-next" mat-mini-fab [disabled]="checkNxtBtnClick()" (click)="viewDriverBreakdown(current_page-1)">
+						  <i class="material-icons">keyboard_arrow_left</i>
+					  </button>
+					  <button class="paginate-button-previous" mat-mini-fab [disabled]="checkPrvBtnClick()" (click)="viewDriverBreakdown(current_page+1)">
+						  <i class="material-icons">keyboard_arrow_right</i>
+					  </button>
+
+				  </div>
+			  </div>
+		  </div>
+
+	  </div>
+
+  </mat-card-content>
+
+
+</mat-card>

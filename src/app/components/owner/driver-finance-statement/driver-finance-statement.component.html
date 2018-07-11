@@ -1,0 +1,158 @@
+<mat-card class="example-card" xmlns="http://www.w3.org/1999/html">
+  <mat-card-header>
+    <mat-card-title>
+
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+  	<div class="row">
+  		<div class="col-md-10"><h4 style="padding-left: 9px;">Driver Finance Statement</h4></div>
+  		<div class="col-md-2 driver-id"><span>Driver ID : {{ driverId }}</span></div>
+  	</div>
+
+		<form class="example-form" #f="ngForm" (ngSubmit)="onSubmit()">
+			<div class="row user-menu">
+
+        <div class="row">
+
+          <div class="col-md-12">
+
+            <div class="col-md-7">
+
+              <div class="col-md-4">
+                <span class="driver-attr">Completed</span><br> <span class="att-value">{{ requestPerformanceDataSummary.totalTripCount	}}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span class="driver-attr">Earnings</span><br> <span class="att-value">{{ requestPerformanceDataSummary.billingRevenue }}</span>
+              </div>
+
+              <div class="col-md-4">
+                <span class="driver-attr">Outstanding</span><br> <span class="att-value">{{ requestFinanceDataSummary.balance }}</span>
+              </div>
+
+            </div>
+
+            <div class="col-md-5">
+              <!--<button class="col-md-3" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Dashboard</button>-->
+              <button class="space pull-right active"  [routerLink]="['/owner', driverId,'driver-finance-statement']" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Finance Statement</button>
+              <button class="space pull-right"  [routerLink]="['/owner', driverId,'driver-performance']"  mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px; display: none">Driver Performance</button>
+              <button class="space pull-right"  [routerLink]="['/owner', driverId,'trip-breakdown']" mat-button color="primary" style="background: #f1f1f1;margin-bottom: 4px;">Trip Breakdown</button>
+            </div>
+
+          </div>
+
+        </div>
+			</div>
+			<br>
+			<br>
+
+			<div class="row user-menu">
+
+				<div class="col-md-2">
+					<mat-form-field>
+						<input matInput [matDatepicker]="dateF" [(ngModel)]="driverFinaceData.dateF" name="dateF" id="dateF" placeholder="Choose a Date">
+						<mat-datepicker-toggle matSuffix [for]="dateF"></mat-datepicker-toggle>
+						<mat-datepicker #dateF></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div class="col-md-2">
+					<mat-form-field>
+						<input matInput [matDatepicker]="dateT" name="dateT" [(ngModel)]="driverFinaceData.dateT"  id="dateT" placeholder="Choose a Date">
+						<mat-datepicker-toggle matSuffix [for]="dateT"></mat-datepicker-toggle>
+						<mat-datepicker #dateT></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<div class="col-md-2">
+					<mat-form-field>
+					  <mat-select name="search_keyword"  id="search_keyword" [(ngModel)]="driverFinaceData.search_keyword" placeholder="Pay Type">
+					    <mat-option *ngFor="let paymentType of paymentTypeList" [value]="paymentType.value">
+					      {{ paymentType.viewValue }}
+					    </mat-option>
+					  </mat-select>
+					</mat-form-field>
+				</div>
+
+				<div class="col-md-1">
+					<button class="pull-right space iconBackground" mat-fab>
+            <i class="material-icons iconStyle">search</i>
+          </button>
+				</div>
+
+        <div class="col-md-1">
+          <button (click)="clearFeilds()" class="pull-right space iconBackground" mat-fab>
+            <i class="material-icons iconStyle">autorenew</i>
+          </button>
+        </div>
+
+        <div class="col-md-3">
+        <button class="pull-right space iconBackground" (click)="downloadPDF()" mat-fab>
+          <i class="material-icons iconStyle">get_app</i></button>
+        </div>
+
+			</div>
+
+			<div class="row">
+
+			</div>
+
+		</form>
+
+    <br>
+
+	<div class="msg-data"></div>
+
+    <div class="row">
+
+	</div>
+	  <mat-progress-bar  *ngIf="dataLoading" mode="indeterminate"></mat-progress-bar>
+	  <div class="example-container mat-elevation-z8">
+      <div style="overflow-x: scroll;">
+		    <table class="table table-hover table-bordered"  id="data-table">
+			  <thead>
+			  <tr class=" warning">
+				  <th>Date</th>
+				  <th>Trip ID</th>
+				  <th>Payment Type</th>
+				  <th>Amount</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  <tr *ngFor="let driver of requestData; let i = index" [ngSwitch] = "driver.payment_type">
+				  <td>{{ driver.created_date }}</td>
+				  <td>{{ driver.trip_id }}</td>
+				  <td>
+					  <span *ngSwitchCase="1">Cash</span>
+					  <span *ngSwitchCase="2">Card</span>
+					  <span *ngSwitchCase="3">Points</span>
+				  </td>
+				  <td>{{ driver.amount }}</td>
+			  </tr>
+			  </tbody>
+		  </table>
+      </div>
+	  </div>
+	  <div class="row">
+		  <div class="col-md-12">
+			  <div class="pull-right">
+				  <div class="pg-count">{{ current_page}} of {{ total_pages}} Pages</div>
+				  <div class="pagination">
+					  <button class="paginate-button-next" mat-mini-fab [disabled]="checkNxtBtnClick()" (click)="viewDriverFinance(current_page-1)">
+						  <i class="material-icons">keyboard_arrow_left</i>
+					  </button>
+					  <button class="paginate-button-previous" mat-mini-fab [disabled]="checkPrvBtnClick()" (click)="viewDriverFinance(current_page+1)">
+						  <i class="material-icons">keyboard_arrow_right</i>
+					  </button>
+
+				  </div>
+			  </div>
+		  </div>
+
+	  </div>
+  </mat-card-content>
+
+
+</mat-card>

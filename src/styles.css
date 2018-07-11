@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files*/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+  background: url("assets/img/background5.jpg") repeat #ededed!important;
+  color:#958c8c!important;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+md-icon{
+  font-family: 'Material Icons' !important;
+}
+
+.material-icons{
+   font-size: 16px;
+   color: #367fa9;
+ }

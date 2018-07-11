@@ -1,0 +1,73 @@
+mat-card-header {
+	margin-bottom: 10px;
+}
+
+.title {
+	color: gray;
+}
+
+.driver-info > span {
+	font-size: 16px;
+}
+
+.driver-info {
+	padding-left: 24px !important;
+	padding-bottom: 8px;
+}
+
+.driver-id {
+	padding-left: 24px
+}
+
+.driver-id > span {
+	font-size: 16px;
+}
+
+.example-form {
+	margin-top: 15px;
+}
+
+.user-menu {
+	margin-bottom: 20px;
+}
+
+.search-field {
+	padding-left: 10px
+}
+
+.driver-details {
+	padding-bottom: 10px;
+}
+
+.status {
+	color: #82d033;
+}
+
+.driver-attr {
+	line-height: 40px;
+}
+
+.att-value {
+	font-weight: 500;font-size: 23px;letter-spacing: 1px;
+}
+
+.map-area {
+	margin-top: 15px;
+}
+
+agm-map {
+  height: 300px;
+}
+
+agm-marker {
+	size: 20px;
+}
+
+
+.space {
+	margin-right: 5px !important;
+}
+
+.active {
+	border-bottom: 3px solid #00d14e;
+}
